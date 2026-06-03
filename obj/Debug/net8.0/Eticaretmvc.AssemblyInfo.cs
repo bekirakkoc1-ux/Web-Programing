@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Eticaretmvc")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6d966fe4e718f4683b7b3cae970c4c721680cba0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Eticaretmvc")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Eticaretmvc")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

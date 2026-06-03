@@ -63,3 +63,4 @@
 /Users/macbook/Downloads/Eticaretmvc/obj/Debug/net8.0/Eticaretmvc.pdb
 /Users/macbook/Downloads/Eticaretmvc/obj/Debug/net8.0/Eticaretmvc.genruntimeconfig.cache
 /Users/macbook/Downloads/Eticaretmvc/obj/Debug/net8.0/ref/Eticaretmvc.dll
+/Users/macbook/Downloads/Eticaretmvc/obj/Debug/net8.0/Eticaretmvc.sourcelink.json
