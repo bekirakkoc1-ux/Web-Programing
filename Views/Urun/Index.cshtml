@@ -1,0 +1,25 @@
+@model IEnumerable<Eticaretmvc.Models.Urun>
+
+<h2 class="mb-4">🧲 Ürünler</h2>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var urun in Model)
+    {
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <img src="@(string.IsNullOrEmpty(urun.ResimYolu) ? "/images/default.jpg" : urun.ResimYolu)" 
+                     class="card-img-top" style="height: 200px; object-fit: cover;" alt="@urun.Ad" />
+
+                <div class="card-body">
+                    <h5 class="card-title">@urun.Ad</h5>
+                    <p class="card-text">@urun.Aciklama</p>
+                    <p class="fw-bold">@urun.Fiyat ₺</p>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a asp-controller="Sepet" asp-action="Ekle" asp-route-id="@urun.Id" 
+                       class="btn btn-sm btn-success w-100">Sepete Ekle</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

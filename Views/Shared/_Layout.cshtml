@@ -1,0 +1,125 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Extensions
+@inject IHttpContextAccessor HttpContextAccessor
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    var kullaniciAdi = HttpContextAccessor.HttpContext?.Session.GetString("kullaniciAdi");
+    var isAdmin = HttpContextAccessor.HttpContext?.Session.GetString("isAdmin") == "true";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MıknatısShop</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">🧲 MıknatısShop</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                    aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNavbar">
+            <div class="collapse navbar-collapse" id="mainNavbar">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Home" asp-action="Index">Anasayfa</a>
+        </li>
+
+        @if (isAdmin)
+        {
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="AdminUrun" asp-action="Index">🛠 Admin Ürünler</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="AdminKategori" asp-action="Index">🛠 Admin Kategoriler</a>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Urun" asp-action="Index">🧲 Ürünler</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Sepet" asp-action="Index">🛒 Sepetim</a>
+            </li>
+        }
+    </ul>
+
+
+                <ul class="navbar-nav ms-auto">
+                    @if (!string.IsNullOrEmpty(kullaniciAdi))
+                    {
+                        <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        👋 Merhaba, @Context.Session.GetString("UserName")
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+        <li><a class="dropdown-item" asp-controller="Siparis" asp-action="Gecmis">📜 Siparişlerim</a></li>
+        <li><a class="dropdown-item" asp-controller="Kullanici" asp-action="Ayarlar">⚙️ Hesap Ayarları</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item text-danger" asp-controller="Kullanici" asp-action="Cikis">🚪 Çıkış Yap</a></li>
+    </ul>
+</li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-controller="Kullanici" asp-action="Login">Giriş Yap</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-controller="Kullanici" asp-action="Register">Kayıt Ol</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+@{
+    var path = Context.Request.Path.ToString().ToLower();
+    var loginSayfasi = path.Contains("/kullanici/login");
+    var registerSayfasi = path.Contains("/kullanici/register");
+    var aramaGosterme = loginSayfasi || registerSayfasi;
+}
+
+@if (!aramaGosterme)
+{
+    <div class="bg-light border-bottom py-3">
+    <div class="container d-flex justify-content-center">
+        <form asp-controller="Urun" asp-action="Ara" method="get" class="search-box d-flex w-50">
+            <input name="q" type="text" class="form-control me-2 shadow-sm"
+                   placeholder="Ürün ara (örn: mıknatıs, pot mıknatıs...)" required />
+            <button type="submit" class="btn btn-danger px-3 shadow-sm">Ara</button>
+        </form>
+    </div>
+</div>
+
+}
+
+    <div class="container mt-4">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted mt-5">
+        <div class="container">
+            &copy; 2026 - MıknatısShop
+        </div>
+    </footer>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    @RenderSection("Scripts", required: false) 
+
+</body>
+</html>

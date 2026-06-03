@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "MıknatısShop - Ana Sayfa";
+    var kategoriler = ViewBag.Kategoriler as List<Eticaretmvc.Models.Kategori>;
+}
+
+<div class="container-fluid mt-3">
+    <div class="row">
+        
+        <div class="col-md-3">
+            <div class="list-group shadow-sm">
+                <a class="list-group-item list-group-item-danger fw-bold text-white bg-danger">Tüm Kategoriler</a>
+                @foreach (var kategori in kategoriler)
+                {
+                    <a asp-controller="Home" asp-action="Kategori" asp-route-id="@kategori.Id" class="list-group-item list-group-item-action">
+                        @kategori.Ad
+                    </a>
+                }
+            </div>
+        </div>
+
+
+        <div class="col-md-9">
+            <div class="card shadow-sm">
+                <img src="/images/banner.jpg" class="img-fluid rounded" alt="Banner" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row text-center g-4">
+
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <img src="/images/3x6.jpg" class="card-img-top rounded" alt="Neodyum" />
+                <div class="card-body">
+                    <h5 class="card-title">NEODYUM MIKNATISLAR</h5>
+                    <a href="/Home/Kategori/5" class="btn btn-danger">KATEGORİYE GİT</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <img src="/images/4x3.jpg" class="card-img-top rounded" alt="Ferrit" />
+                <div class="card-body">
+                    <h5 class="card-title">FERRİT MIKNATISLAR</h5>
+                    <a href="/Home/Kategori/3" class="btn btn-danger">KATEGORİYE GİT</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <img src="/images/4x6.jpg" class="card-img-top rounded" alt="Tabaka" />
+                <div class="card-body">
+                    <h5 class="card-title">Köşeli Neodyum Mıknatıs</h5>
+                    <a href="/Home/Kategori/8" class="btn btn-danger">KATEGORİYE GİT</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

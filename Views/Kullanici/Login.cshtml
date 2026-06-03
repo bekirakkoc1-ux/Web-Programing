@@ -1,0 +1,27 @@
+@* Login.cshtml *@
+@model Eticaretmvc.Models.Kullanici
+
+@{
+    ViewData["Title"] = "Giriş Yap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="login-container">
+    <h2 class="text-center mb-4">Giriş Yap</h2>
+
+    <form asp-action="Login" method="post" class="login-form">
+        <div class="form-group mb-3">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Sifre"></label>
+            <input asp-for="Sifre" type="password" class="form-control" />
+            <span asp-validation-for="Sifre" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-danger w-100">Giriş Yap</button>
+    </form>
+</div>

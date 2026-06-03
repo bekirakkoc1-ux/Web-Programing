@@ -1,0 +1,16 @@
+@model Eticaretmvc.Models.Urun
+
+<h2>Ürünü Sil</h2>
+
+<div>
+    <h4>@Model.Ad</h4>
+    <p>Kategori: @Model.Kategori?.Ad</p>
+    <p>Fiyat: @Model.Fiyat ₺</p>
+
+    <form asp-action="Delete">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Sil</button>
+        <a asp-action="Index" class="btn btn-secondary">İptal</a>
+    </form>
+</div>

@@ -1,0 +1,38 @@
+@model List<Eticaretmvc.Models.SepetItem>
+
+<h2>Sepetim</h2>
+
+@if (!Model.Any())
+{
+    <p>Sepetiniz boş.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ürün</th>
+                <th>Fiyat</th>
+                <th>Adet</th>
+                <th>Toplam</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Urun.Ad</td>
+                    <td>@item.Urun.Fiyat ₺</td>
+                    <td>@item.Adet</td>
+                    <td>@(item.Urun.Fiyat * item.Adet) ₺</td>
+                    <td>
+                        <a asp-action="Sil" asp-route-id="@item.UrunId" class="btn btn-sm btn-danger">Sil</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-action="SatinAl" class="btn btn-primary">Satın Al</a>
+}

@@ -1,0 +1,36 @@
+@model Eticaretmvc.Models.Kullanici
+
+@{
+    ViewData["Title"] = "Hesap Ayarları";
+}
+
+<div class="container mt-5" style="max-width: 500px;">
+    <h2 class="mb-4 text-center">Hesap Ayarları</h2>
+
+    @if (TempData["Mesaj"] != null)
+    {
+        <div class="alert alert-success">@TempData["Mesaj"]</div>
+    }
+
+    <form asp-action="Ayarlar" method="post" class="card p-4 shadow-sm">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label class="form-label">Kullanıcı Adı</label>
+            <input asp-for="KullaniciAdi" class="form-control" readonly style="background-color: #e9ecef;" />
+            <small class="text-muted">Kullanıcı adı değiştirilemez.</small>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">E-posta Adresi</label>
+            <input asp-for="Email" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Yeni Şifre</label>
+            <input asp-for="Sifre" type="text" class="form-control" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Bilgileri Güncelle</button>
+    </form>
+</div>

@@ -1,0 +1,33 @@
+@model List<Eticaretmvc.Models.Urun>
+@{
+    ViewData["Title"] = "Arama Sonuçları";
+    var kelime = ViewBag.AramaKelimesi as string;
+}
+
+<h2 class="mb-4">🔍 "@kelime" için arama sonuçları</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning">Sonuç bulunamadı.</div>
+}
+else
+{
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var urun in Model)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="@urun.ResimYolu" class="card-img-top" style="height: 200px; object-fit: cover;" />
+                    <div class="card-body">
+                        <h5 class="card-title">@urun.Ad</h5>
+                        <p>@urun.Aciklama</p>
+                        <p class="fw-bold">@urun.Fiyat ₺</p>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a asp-controller="Sepet" asp-action="Ekle" asp-route-id="@urun.Id" class="btn btn-sm btn-success w-100">Sepete Ekle</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

@@ -1,0 +1,42 @@
+@model List<Eticaretmvc.Models.Siparis>
+
+<h2>Sipariş Geçmişi</h2>
+
+@if (Model.Count == 0)
+{
+    <div class="alert alert-info">Henüz bir siparişiniz yok.</div>
+}
+else
+{
+    foreach (var siparis in Model)
+    {
+        <div class="card mb-4">
+            <div class="card-header">
+                <strong>Tarih:</strong> @siparis.Tarih.ToString("g")
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Ürün</th>
+                            <th>Adet</th>
+                            <th>Birim Fiyat</th>
+                            <th>Toplam</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var detay in siparis.Detaylar)
+                        {
+                            <tr>
+                                <td>@detay.Urun?.Ad</td>
+                                <td>@detay.Adet</td>
+                                <td>@detay.Fiyat ₺</td>
+                                <td>@(detay.Adet * detay.Fiyat) ₺</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+}

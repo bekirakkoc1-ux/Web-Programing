@@ -1,0 +1,15 @@
+@{
+    ViewData["Title"] = "Sipariş Tamamlandı";
+}
+
+<h2>Sipariş Tamamlandı</h2>
+
+@if (ViewBag.Mesaj != null)
+{
+    <div class="alert alert-success">@ViewBag.Mesaj</div>
+}
+else
+{
+    <div class="alert alert-info">İşlem tamamlandı.</div>
+}
+<a asp-controller="Siparis" asp-action="Gecmis" class="btn btn-primary">Sipariş Geçmişine Git</a>
